@@ -32,7 +32,12 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Transaction saveTransaction(Transaction transaction) throws DigiException {
-        return transactionDao.save(transaction);
+        try {
+            return transactionDao.save(transaction);
+        }catch (Exception e){
+            logger.error("error during saving transaction",e);
+            throw new DigiException(e.getMessage(),"not saved");
+        }
     }
 
     @Override
