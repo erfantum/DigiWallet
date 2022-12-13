@@ -14,7 +14,7 @@ public interface UserService {
 
     List<User> findAllUser();
 
-    User findUserById(Long id);
+    User findUserById(Long id) throws DigiException;
 
     List<User> findUserByExample(Example<User> userExample);
 

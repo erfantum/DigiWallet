@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User findUserById(Long id) {
-        return userDao.findById(id).orElseThrow(RuntimeException::new);
+    public User findUserById(Long id) throws DigiException {
+        return userDao.findById(id).orElseThrow(()->new DigiException(id.toString(),"user not found"));
     }
 
     @Transactional
